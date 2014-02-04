@@ -51,7 +51,7 @@ void AddressModifyMenu();
 
 void VehicleMenu();
 
-void VehicleModifyMenu()
+void VehicleModifyMenu();
 
 
 #ifdef	__cplusplus

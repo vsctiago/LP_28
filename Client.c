@@ -268,14 +268,14 @@ Client readClientFile(Client clients[]) {
     }
 }
 
-void saveClientFile(Client *pClients) {
+void saveClientFile(Client clients[]) {
     
     FILE *pClient = fopen("Clients", "w");
     if(pClient == (FILE *) NULL) {
         puts("File doesn't exist.");
         puts("Couldn't save.");
     } else {
-        fwrite(pClients, sizeof(Client), CLIENTS_SIZE, pClient);
+        fwrite(clients, sizeof(Client), CLIENTS_SIZE, pClient);
         puts("File saved.");
         fclose(pClient);
     }

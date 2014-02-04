@@ -79,7 +79,7 @@ Client initClientFile(Client clients[]);
 
 Client readClientFile(Client clients[]);
 
-void saveClientFile(Client *pClients);
+void saveClientFile(Client clients[]);
 
 void addClient(Client *pClients);
 

@@ -32,7 +32,7 @@ void listVehicle (Vehicle vehicles[]) {
     for(i=0; i<VEHICLE_SIZE; i++){
         
         if(vehicles[i].vehicleChars.engine == VEHICLE_INIT_ID) {
-            puts("MSG_VEHICLS_NOT_FUND", NEWLINE);
+            //puts("MSG_VEHICLS_NOT_FUND", NEWLINE);
         }else{
          printf("");
          printf("");
@@ -79,14 +79,14 @@ Vehicle initVehicleFile(Vehicle vehicles[]) {
     }
 }
  
- void saveVehicleFile(Vehicle *pVehicles) {
+ void saveVehicleFile(Vehicle vehicles[]) {
     
     FILE *pVehicle = fopen("Vehicles", "w");
     if(pVehicle == (FILE *) NULL) {
         puts("File doesn't exist.");
         puts("Couldn't save.");
     } else {
-        fwrite(pVehicles, sizeof(Vehicle), VEHICLE_SIZE, pVehicle);
+        fwrite(vehicles, sizeof(Vehicle), VEHICLE_SIZE, pVehicle);
         puts("File saved.");
         fclose(pVehicle);
     }

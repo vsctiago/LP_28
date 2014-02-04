@@ -50,11 +50,15 @@ typedef struct vehicle {
     CurrentState currentState;
 } Vehicle;
 
-Vehicle initVehicleFile(Vehicle *pVehicles);
+void listVehicle (Vehicle vehicles[]);
+
+Vehicle initVehicleFile(Vehicle vehicles[]);
 
 void createVehicleFile(Vehicle vehicles[]);
 
 Vehicle readVehicleFile(Vehicle vehicles[]);
+
+ void saveVehicleFile(Vehicle vehicles[]);
 
 
 #ifdef	__cplusplus

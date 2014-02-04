@@ -55,6 +55,8 @@ void VehicleMenu() {
     printf(MSG_OPTION);
 }
 // TODO: CHANGE THIS TO MATCH VEHICLE STRUCT
+
+/*
 void VehicleModifyMenu() {    
     printf(MSG_MODIFY_MENU, NEWLINE);
     printf(MSG_MODIFY_NAME, NEWLINE);
@@ -64,3 +66,4 @@ void VehicleModifyMenu() {
     printf(MSG_MODIFY_SIGNUPDATE, NEWLINE);
     printf(MSG_OPTION);
 }
+*/
