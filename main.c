@@ -18,10 +18,11 @@
 int main(int argc, char** argv) {
 
     Client clients[CLIENTS_SIZE];
-    Vehicle vehicle[VEHICLE_SIZE];
+    Vehicle vehicles[VEHICLE_SIZE];
     int menuOpt, clientOpt;
     
     readClientFile(clients);
+    readVehicleFile(vehicles);
     
     do {
         Menu();
@@ -39,7 +40,22 @@ int main(int argc, char** argv) {
                 listClients(clients);
             }
         } else if(menuOpt == 2) {
+            VehicleMenu();
+            scanf("%d", &menuOpt);
+            switch (menuOpt) {
+                case 1:
 
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+                case 4:
+                    
+                    break;
+            }
         } else {
             
         }
