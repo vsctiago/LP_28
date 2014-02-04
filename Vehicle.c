@@ -7,20 +7,65 @@
 #include "Menu.h"
 #include "Utils.h"
 
-void getRegistrationVehicle(Vehicle *vehicle, unsigned short int pos) {
-
-
+void getRegistration(Vehicle *pVehicles, unsigned short int pos) {
+    bool val = false;
+    char registration[REGISTRATION_LENGTH];
+    unsigned short i;
+    
+    do {
+        printf(MSG_REGISTRATION);
+        lerFrase(registration, REGISTRATION_LENGTH);
+        if(registration[REG_FIRSTDASH] != '-'
+                && registration[REG_SECONDASH] != '-') {
+            printf(MSG_REGISTRATION_ERROR, NEWLINE);
+            val = false;
+        } else {
+            for(i=0; i<REG_FIRSTDASH; i++) {
+                if(isdigit(registration[i])) {
+                    val = true;
+                } else {
+                    printf(MSG_REGISTRATION_ERROR, NEWLINE);
+                    val = false;
+                    break;
+                }
+            }
+            if(val == true) {
+                for(i=REG_AFIRSTDASH; i<REG_SECONDASH; i++) {
+                    if(isalpha(registration[i])) {
+                        val = true;
+                    } else {
+                        printf(MSG_REGISTRATION_ERROR, NEWLINE);
+                        val = false;
+                        break;
+                    }
+                }
+            }
+            if(val == true) {
+                for(i=REG_ASECONDASH; i<REG_END; i++) {
+                    if(isdigit(registration[i])) {
+                        val = true;
+                    } else {
+                        printf(MSG_REGISTRATION_ERROR, NEWLINE);
+                        val = false;
+                        break;
+                    }
+                }
+            }
+        }
+        limparBufferEntradaDados();
+    } while(val == false);
+    strcpy(pVehicles[pos].registration, registration);
 };
 
-void getNameVehicle(Vehicle *vehicle, unsigned short int pos) {
+void getNameVehicle(Vehicle *pVehicles, unsigned short int pos) {
     bool val = false;
-    char name[NAME_LENGTH];
+    char name[VEHICLENAME_LENGTH];
     unsigned short i;
 
     do {
         printf(MSG_NAME);
-        lerFrase(name, NAME_LENGTH);
-        for (i = 0; i < NAME_LENGTH && name[i] != '\0'; i++) {
+        lerFrase(name, VEHICLENAME_LENGTH);
+        for (i = 0; i < VEHICLENAME_LENGTH && name[i] != '\0'; i++) {
             if (isalpha(name[i]) || isspace(name[i])) {
                 val = true;
             } else {
@@ -30,122 +75,85 @@ void getNameVehicle(Vehicle *vehicle, unsigned short int pos) {
             }
         }
     } while (val == false);
-    strcpy(vehicle[pos].name, name);
+    strcpy(pVehicles[pos].name, name);
 }
 
-void getType(Vehicle *vehicle, unsigned short int pos) {
+void getType(Vehicle *pVehicles, unsigned short int pos) {
 
 
 }
 
-void getEngine(Vehicle *vehicle, unsigned short int pos) {
+void getDisplacement(Vehicle *pVehicles, unsigned short int pos) {
 
-    unsigned short eng;
-    bool valid;
+    unsigned short displacement;
+    bool valEng;
     do {
-        printf(MSG_ENG);
-        scanf("%lu", &eng);
+        printf(MSG_DISPLACEMENT);
+        scanf("%hu", &displacement);
         limparBufferEntradaDados();
-        if (eng > ENG_MINIMUM && eng < ENG_MAXIMUM) {
-            valid = true;
+        if (displacement >= ENG_MINIMUM && displacement <= ENG_MAXIMUM) {
+            valEng = true;
         } else {
-            printf(MSG_ENG_ERROR, NEWLINE);
+            printf(MSG_DISPLACEMENT_ERROR, NEWLINE);
         }
-    } while (valid == false);
+    } while (valEng == false);
 
-    vehicle[pos].vehicleChars.engine = eng;
+    pVehicles[pos].vehicleChars.displacement = displacement;
 
 }
 
-void getHp(Vehicle *vehicle, unsigned short int pos) {
+void getHp(Vehicle *pVehicles, unsigned short int pos) {
     unsigned short hp;
-    bool valid;
+    bool valHp;
     do {
         printf(MSG_HP);
-        scanf("%lu", &hp);
+        scanf("%hu", &hp);
         limparBufferEntradaDados();
-        if (hp > HP_MINIMUM && hp < HP_MAXIMUM) {
-            valid = true;
+        if (hp >= HP_MINIMUM && hp <= HP_MAXIMUM) {
+            valHp = true;
         } else {
             printf(MSG_HP_ERROR, NEWLINE);
         }
-    } while (valid == false);
-    vehicle[pos].vehicleChars.hp = hp;
+    } while (valHp == false);
+    pVehicles[pos].vehicleChars.hp = hp;
 }
 
-void getFuel(Vehicle *vehicle, unsigned short int pos) {
+void getFuel(Vehicle *pVehicles, unsigned short int pos) {
 
 
 }
 
-void getSeats(Vehicle *vehicle, unsigned short int pos) {
+void getSeats(Vehicle *pVehicles, unsigned short int pos) {
 
     unsigned short seats;
-    bool valid;
+    bool valSeats;
     do {
         printf(MSG_SEATS);
-        scanf("%lu", &seats);
+        scanf("%hu", &seats);
         limparBufferEntradaDados();
-        if (seats > HP_MINIMUM && seats < HP_MAXIMUM) {
-            valid = true;
+        if (seats >= SEATS_MINIMUM && seats <= SEATS_MAXIMUM) {
+            valSeats = true;
         } else {
             printf(MSG_SEATS_ERROR, NEWLINE);
         }
-    } while (valid == false);
-    vehicle[pos].vehicleChars.seats = seats;
+    } while (valSeats == false);
+    pVehicles[pos].vehicleChars.seats = seats;
 }
 
-void getCurrentState(Vehicle *vehicle, unsigned short int pos) {
+void getCurrentState(Vehicle *pVehicles, unsigned short int pos) {
 
 
 }
 
-unsigned short int getPositionVehicle(Vehicle *vehicle) {
+unsigned short int verifyEmptyVehiclePosition(Vehicle *pVehicles) {
 
     int i;
 
-    for (i = 0; i < VEHICLE_SIZE; i++) {
-        if (vehicle[i].registration == VEHICLE_INIT_ID)
+    for (i = 0; i < VEHICLES_SIZE; i++) {
+        if (pVehicles[i].registration == VEHICLE_INIT_ID)
             return i;
     }
     return EOF;
-}
-
-void addVehicle(Vehicle *vehicle) {
-    unsigned short int position;
-    position = getPositionVehicle(vehicle);
-    if (position == EOF) {
-        printf(MSG_VEHICLE_SPACE_FULL, NEWLINE);
-    } else {
-        vehicle[position].rentedstate = false;
-        getNameVehicle(vehicle, position);
-        getRegistrationVehicle(vehicle, position);
-        printf(MSG_VEHICLE_FEATURES, NEWLINE);
-        getEngine(vehicle, position);
-        getHp(vehicle, position);
-
-    }
-
-}
-
-//modifyVehicle()
-
-//removeVehicle()
-
-void listVehicle(Vehicle vehicles[]) {
-    int i;
-
-    for (i = 0; i < VEHICLE_SIZE; i++) {
-
-        if (vehicles[i].vehicleChars.engine == VEHICLE_INIT_ID) {
-            //            puts(MSG_VEHICLS_NOT_FUND, NEWLINE);
-        } else {
-            printf("");
-            printf("");
-        }
-
-    }
-
 }
 
 void createVehicleFile(Vehicle vehicles[]) {
@@ -154,7 +162,7 @@ void createVehicleFile(Vehicle vehicles[]) {
     if (pVehicle == (FILE *) NULL) {
         puts("Couldn't create file.");
     } else {
-        fwrite(vehicles, sizeof (Vehicle), VEHICLE_SIZE, pVehicle);
+        fwrite(vehicles, sizeof (Vehicle), VEHICLES_SIZE, pVehicle);
         fclose(pVehicle);
     }
 }
@@ -162,10 +170,10 @@ void createVehicleFile(Vehicle vehicles[]) {
 Vehicle initVehicleFile(Vehicle vehicles[]) {
     int i;
 
-    for (i = 0; i < VEHICLE_SIZE; i++) {
-        vehicles[i].vehicleChars.engine = VEHICLE_INIT_ID;
+    for (i = 0; i < VEHICLES_SIZE; i++) {
+        vehicles[i].vehicleChars.displacement = VEHICLE_INIT_ID;
     }
-    return vehicles[VEHICLE_SIZE];
+    return vehicles[VEHICLES_SIZE];
 }
 
 Vehicle readVehicleFile(Vehicle vehicles[]) {
@@ -175,12 +183,12 @@ Vehicle readVehicleFile(Vehicle vehicles[]) {
         puts("File doesn't exist");
         puts("Creating file now...");
         createVehicleFile(vehicles);
-        vehicles[VEHICLE_SIZE] = initVehicleFile(vehicles);
+        vehicles[VEHICLES_SIZE] = initVehicleFile(vehicles);
         saveVehicleFile(vehicles);
         puts("File created");
         readVehicleFile(vehicles);
     } else {
-        fread(vehicles, sizeof (Vehicle), VEHICLE_SIZE, pVehicle);
+        fread(vehicles, sizeof (Vehicle), VEHICLES_SIZE, pVehicle);
         fclose(pVehicle);
     }
 }
@@ -192,58 +200,27 @@ void saveVehicleFile(Vehicle vehicles[]) {
         puts("File doesn't exist.");
         puts("Couldn't save.");
     } else {
-        fwrite(vehicles, sizeof (Vehicle), VEHICLE_SIZE, pVehicle);
+        fwrite(vehicles, sizeof (Vehicle), VEHICLES_SIZE, pVehicle);
         puts("File saved.");
         fclose(pVehicle);
     }
 }
 
-/*
- 
-#include <stdio.h>
-#include <stdlib.h>
+void addVehicle(Vehicle *pVehicles) {
+    int pos;
+    
+    pos = verifyEmptyVehiclePosition(pVehicles);
+    if (pos == EOF) {
+        printf(MSG_VEHICLE_SPACE_FULL, NEWLINE);
+    } else {
+        pVehicles[pos].rentedState = false;
+        getNameVehicle(pVehicles, pos);
+        getRegistration(pVehicles, pos);
+        printf(MSG_VEHICLE_FEATURES, NEWLINE);
+        getDisplacement(pVehicles, pos);
+        getHp(pVehicles, pos);
 
-#include "Vehicle.h"
-
-void getRegistration(Vehicle *vehicle) {
-
-
-}
-
-//getName()  PROVAVELMENTE DA PA METER O getName de Client em GENERAL E USAR PARA OS 2.
-
-//getType()
-
-//getEngine()
-
-//getHp()
-
-//getFuel()
-
-//getSeats()
-
-//getCurrentState()
-
-int getPositionVehicle(Vehicle vehicles) {
-
-   int i;
-
-   for (i = 0; i < VEHICLE_SIZE; i++) {
-       if (vehicles.registration == VEHICLE_INIT_ID)
-           return i;
-   }
-   return EOF;
-}
-
-Vehicle addVehicle(Vehicle *vehicles[]) {
-   int position;
-   position = getPositionVehicle(vehicle[position]);
-   if (position == EOF) {
-       puts(MSG_VEHICLE_SPACE_FULL, NEWLINE);
-   } else {
-       getRegistration(&vehicle);
-
-   }
+    }
 
 }
 
@@ -252,93 +229,11 @@ Vehicle addVehicle(Vehicle *vehicles[]) {
 //removeVehicle()
 
 void listVehicle(Vehicle vehicles[]) {
-   int i;
-<<<<<<< HEAD
+    int i;
 
-   for (i = 0; i < VEHICLE_SIZE; i++) {
-
-       if (vehicles[i].registration == VEHICLE_INIT_ID) {
-           puts(MSG_VEHICLE_NOT_FUND, NEWLINE);
-       } else {
-           printf("");
-           printf("");
-=======
-    
-   for(i=0; i<VEHICLE_SIZE; i++){
-        
-       if(vehicles[i].vehicleChars.engine == VEHICLE_INIT_ID) {
-<<<<<<< HEAD
-           //puts("MSG_VEHICLS_NOT_FUND", NEWLINE);
-=======
-           puts("MSG_VEHICLE_NOT_FUND", NEWLINE);
->>>>>>> 4beac7853f7578892b069eb20616885101c89a60
-       }else{
-        printf("");
-        printf("");
->>>>>>> c3bbbfa50f78a872d0ed34aeb95eb35298722382
-       }
-
-   }
-
+    for (i = 0; i < VEHICLES_SIZE; i++) {
+        if (vehicles[i].vehicleChars.displacement == VEHICLE_INIT_ID) {
+            
+        }
+    }
 }
-
-void createVehicleFile(Vehicle vehicles[]) {
-
-   FILE *pVehicle = fopen("Vehicle", "w");
-   if (pVehicle == (FILE *) NULL) {
-       puts("Couldn't create file.");
-   } else {
-       fwrite(vehicles, sizeof (Vehicle), VEHICLE_SIZE, pVehicle);
-       fclose(pVehicle);
-   }
-}
-
-Vehicle initVehicleFile(Vehicle vehicles[]) {
-   int i;
-
-   for (i = 0; i < VEHICLE_SIZE; i++) {
-       vehicles[i].vehicleChars.engine = VEHICLE_INIT_ID;
-   }
-   return vehicles[VEHICLE_SIZE];
-}
-
-Vehicle readVehicleFile(Vehicle vehicles[]) {
-
-   FILE *pVehicle = fopen("Vehicles", "r");
-   if (pVehicle == (FILE *) NULL) {
-       puts("File doesn't exist");
-       puts("Creating file now...");
-       createVehicleFile(vehicles);
-       vehicles[VEHICLE_SIZE] = initVehicleFile(vehicles);
-       saveVehicleFile(vehicles);
-       puts("File created");
-       readVehicleFile(vehicles);
-   } else {
-       fread(vehicles, sizeof (Vehicle), VEHICLE_SIZE, pVehicle);
-       fclose(pVehicle);
-   }
-}
-<<<<<<< HEAD
-
-void saveVehicleFile(Vehicle *pVehicles) {
-
-=======
- 
-void saveVehicleFile(Vehicle vehicles[]) {
-    
-
-   FILE *pVehicle = fopen("Vehicles", "w");
-   if (pVehicle == (FILE *) NULL) {
-       puts("File doesn't exist.");
-       puts("Couldn't save.");
-   } else {
-<<<<<<< HEAD
-       fwrite(pVehicles, sizeof (Vehicle), VEHICLE_SIZE, pVehicle);
-=======
-       fwrite(vehicles, sizeof(Vehicle), VEHICLE_SIZE, pVehicle);
->>>>>>> c3bbbfa50f78a872d0ed34aeb95eb35298722382
-       puts("File saved.");
-       fclose(pVehicle);
-   }
-}
- */

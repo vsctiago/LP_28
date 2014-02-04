@@ -69,7 +69,7 @@ void getBirthday(Client *pClients, unsigned short pos);
 
 void getSignupDate(Client *pClients, unsigned short pos);
 
-int verifyIfPosEmpty(Client *pClients);
+int verifyEmptyClientPosition(Client *pClients);
 
 int verifyClientToModify(Client *pClients, unsigned long id);
 

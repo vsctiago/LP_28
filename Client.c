@@ -208,7 +208,7 @@ void getSignupDate(Client *pClients, unsigned short pos) {
     
 }
 
-int verifyIfPosEmpty(Client *pClients) {
+int verifyEmptyClientPosition(Client *pClients) {
     int pos;
     
     for(pos=0; pos<CLIENTS_SIZE; pos++) {
@@ -284,7 +284,7 @@ void saveClientFile(Client clients[]) {
 void addClient(Client *pClients) {
     int pos;
     
-    pos = verifyIfPosEmpty(pClients);
+    pos = verifyEmptyClientPosition(pClients);
     if(pos == EOF) {
         printf(MSG_CLIENTS_FULL_ERROR);
     } else {
@@ -354,10 +354,16 @@ void modifyClient(Client *pClients) {
 }
 
 void listClients(Client clients[]) {
-    int i;
+    int i, cont = 0;
     
     for(i=0; i<CLIENTS_SIZE; i++) {
-        printf("%d - %lu \n", i, clients[i].id);
+        if(clients[i].id != 0) {
+            printf(MSG_LIST_CLIENT, clients[i].id, clients[i].name, NEWLINE);
+            cont++;
+        }
+    }
+    if(cont == 0) {
+        printf(MSG_LIST_ERROR, NEWLINE);
     }
 }
 

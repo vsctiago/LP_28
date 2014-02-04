@@ -18,12 +18,16 @@
 int main(int argc, char** argv) {
 
     Client clients[CLIENTS_SIZE];
-    Vehicle vehicles[VEHICLE_SIZE];
+    Vehicle vehicles[VEHICLES_SIZE];
     int menuOpt, clientOpt;
     
     readClientFile(clients);
     readVehicleFile(vehicles);
     
+    getRegistration(vehicles, 0);
+    
+    printf("%s", vehicles[0].registration);
+/*
     do {
         Menu();
         scanf("%d", &menuOpt);
@@ -60,6 +64,7 @@ int main(int argc, char** argv) {
             
         }
     } while(menuOpt != 5);
+*/
     return (EXIT_SUCCESS);
 }
 

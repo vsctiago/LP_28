@@ -12,16 +12,21 @@
 #include "General.h"
 
 #define REGISTRATION_LENGTH 8+1
-#define NAME_LENGTH 100+1
+#define REG_FIRSTDASH 2
+#define REG_AFIRSTDASH 3
+#define REG_SECONDASH 5
+#define REG_ASECONDASH 6
+#define REG_END 8
+#define VEHICLENAME_LENGTH 100+1
 #define VEHICLE_INIT_ID 0
 
-static const int VEHICLE_SIZE = 10;
+static const int VEHICLES_SIZE = 10;
 static const int ENG_MINIMUM = 1;
 static const int ENG_MAXIMUM = 9999;
-static const int HP_MINIMUM = 0;
+static const int HP_MINIMUM = 1;
 static const int HP_MAXIMUM = 9999;
 static const int SEATS_MINIMUM = 1;
-static const int SEATS_MAXIMUM = 20;
+static const int SEATS_MAXIMUM = 9;
 
 typedef enum type {
     CONVERTIBLE, COUPE, SEDAN, LUXURY, SUV, VAN, TRUCK, HYBRID, WAGON
@@ -36,7 +41,7 @@ typedef enum currentState {
 } CurrentState;
 
 typedef struct vehicleChars {
-    unsigned short engine;
+    unsigned short displacement;
     unsigned short hp;
     Fuel fuel;
     unsigned short seats;
@@ -44,30 +49,47 @@ typedef struct vehicleChars {
 
 typedef struct vehicle {
     char registration[REGISTRATION_LENGTH];
-    char name[NAME_LENGTH];
+    char name[VEHICLENAME_LENGTH];
     Type type;
     VehicleChars vehicleChars;
     CurrentState currentState;
-    bool rentedstate;
+    bool rentedState;
 } Vehicle;
 
+void getRegistration(Vehicle *pVehicles, unsigned short int pos);
 
+void getNameVehicle(Vehicle *pVehicles, unsigned short int pos);
 
-void listVehicle (Vehicle vehicle[]);
+void getType(Vehicle *pVehicles, unsigned short int pos);
 
-unsigned short int getPositionVehicle(Vehicle *vehicle);
+void getDisplacement(Vehicle *pVehicles, unsigned short int pos);
 
-void getNameVehicle(Vehicle *vehicle, unsigned short int pos);
+void getHp(Vehicle *pVehicles, unsigned short int pos);
 
-void addVehicle(Vehicle *vehicle);
+void getFuel(Vehicle *pVehicles, unsigned short int pos);
 
-Vehicle initVehicleFile(Vehicle vehicles[]);
+void getSeats(Vehicle *pVehicles, unsigned short int pos);
+
+void getCurrentState(Vehicle *pVehicles, unsigned short int pos);
+
+unsigned short int verifyEmptyVehiclePosition(Vehicle *pVehicles);
 
 void createVehicleFile(Vehicle vehicles[]);
 
+Vehicle initVehicleFile(Vehicle vehicles[]);
+
 Vehicle readVehicleFile(Vehicle vehicles[]);
 
- void saveVehicleFile(Vehicle vehicles[]);
+void saveVehicleFile(Vehicle vehicles[]);
+
+void addVehicle(Vehicle *pVehicles);
+
+//modifyVehicle
+
+//removeVehicle
+
+void listVehicle(Vehicle vehicles[]);
+
 
 
 #ifdef	__cplusplus
