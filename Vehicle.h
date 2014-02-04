@@ -16,8 +16,8 @@
 #define VEHICLE_INIT_ID 0
 
 static const int VEHICLE_SIZE = 10;
-static const int ENGINE_MINIMUM = 1;
-static const int ENGINE_MAXIMUM = 9999;
+static const int ENG_MINIMUM = 1;
+static const int ENG_MAXIMUM = 9999;
 static const int HP_MINIMUM = 0;
 static const int HP_MAXIMUM = 9999;
 static const int SEATS_MINIMUM = 1;
@@ -48,9 +48,18 @@ typedef struct vehicle {
     Type type;
     VehicleChars vehicleChars;
     CurrentState currentState;
+    bool rentedstate;
 } Vehicle;
 
-void listVehicle (Vehicle vehicles[]);
+
+
+void listVehicle (Vehicle vehicle[]);
+
+unsigned short int getPositionVehicle(Vehicle *vehicle);
+
+void getNameVehicle(Vehicle *vehicle, unsigned short int pos);
+
+void addVehicle(Vehicle *vehicle);
 
 Vehicle initVehicleFile(Vehicle vehicles[]);
 

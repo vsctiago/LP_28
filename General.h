@@ -44,7 +44,14 @@
 
 //MSG CARRROS
 #define MSG_VEHICLE_NOT_FOUND "Vehicle not found. %c"
-
+#define MSG_VEHICLE_SPACE_FULL "Delete one car, before adding a other car"
+#define MSG_VEHICLE_FEATURES "Vehicle Features %c" 
+#define MSG_ENG "Insert cylinder of the vehicle: "
+#define MSG_ENG_ERROR "Engine erro. %c"
+#define MSG_HP "Insert hp power of the vehicle: "
+#define MSG_HP_ERROR "Hp excess."
+#define MSG_SEATS "Insert seats of cars;"
+#define MSG_SEATS_ERROR " The maximum or minimun of the seats of cars exceeded %c"
 
 
 #define MSG_FEB_ERROR "ERROR: February only has 28 days. "
