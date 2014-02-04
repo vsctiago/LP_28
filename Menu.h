@@ -35,6 +35,11 @@
 #define MSG_MODIFY_CITY "4. Modify city. %c"
 #define MSG_MENU_ERROR "Option invalid. %c"
 #define MSG_ID_DOESNT_EXIST_ERROR "ID doesn't exist. %c"
+#define MSG_VEHICLE_MENU "--VEHICLE MENU-- %c"
+#define MSG_VEHICLE_MENU_ADD "1. Add Vehicle. %c"
+#define MSG_VEHICLE_MENU_MODIFY "2. Modify Vehicle. %c"
+#define MSG_VEHICLE_MENU_REMOVE "3. Remove Vehicle. %c"
+#define MSG_VEHICLE_MENU_LIST "4. List Vehicle. %c"
 
 void Menu();
 
@@ -43,6 +48,11 @@ void ClientMenu();
 void ModifyMenu();
 
 void AddressModifyMenu();
+
+void VehicleMenu();
+
+void VehicleModifyMenu()
+
 
 #ifdef	__cplusplus
 extern "C" {

@@ -42,6 +42,10 @@
 #define MSG_YEAR "Year: "
 #define MSG_YEAR_ERROR "ERROR: Year must be between 1900 and 2100. %c"
 
+//MSG CARRROS
+#define MSG_VEHICLS_NOT_FOUND "Vehicle not found. %c"
+
+
 
 #define MSG_FEB_ERROR "ERROR: February only has 28 days. "
 #define MSG_DAYS_ON_MONTH_ERROR "ERROR: Month inserted doesn't have 31 days. "

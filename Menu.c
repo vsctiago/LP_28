@@ -45,3 +45,22 @@ void AddressModifyMenu() {
     printf(MSG_MODIFY_CITY, NEWLINE);
     printf(MSG_OPTION);
 }
+
+void VehicleMenu() {
+    printf(MSG_VEHICLE_MENU, NEWLINE);
+    printf(MSG_VEHICLE_MENU_ADD, NEWLINE);
+    printf(MSG_VEHICLE_MENU_MODIFY, NEWLINE);
+    printf(MSG_VEHICLE_MENU_REMOVE, NEWLINE);
+    printf(MSG_VEHICLE_MENU_LIST, NEWLINE);
+    printf(MSG_OPTION);
+}
+// TODO: CHANGE THIS TO MATCH VEHICLE STRUCT
+void VehicleModifyMenu() {    
+    printf(MSG_MODIFY_MENU, NEWLINE);
+    printf(MSG_MODIFY_NAME, NEWLINE);
+    printf(MSG_MODIFY_ADDRESS, NEWLINE);
+    printf(MSG_MODIFY_PHONE, NEWLINE);
+    printf(MSG_MODIFY_BIRTHDAY, NEWLINE);
+    printf(MSG_MODIFY_SIGNUPDATE, NEWLINE);
+    printf(MSG_OPTION);
+}

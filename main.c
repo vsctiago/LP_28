@@ -18,6 +18,7 @@
 int main(int argc, char** argv) {
 
     Client clients[CLIENTS_SIZE];
+    Vehicle vehicle[VEHICLE_SIZE];
     int menuOpt, clientOpt;
     
     readClientFile(clients);
