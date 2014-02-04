@@ -43,7 +43,7 @@
 #define MSG_YEAR_ERROR "ERROR: Year must be between 1900 and 2100. %c"
 
 //MSG CARRROS
-#define MSG_VEHICLS_NOT_FOUND "Vehicle not found. %c"
+#define MSG_VEHICLE_NOT_FOUND "Vehicle not found. %c"
 
 
 

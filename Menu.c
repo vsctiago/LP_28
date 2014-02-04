@@ -56,14 +56,13 @@ void VehicleMenu() {
 }
 // TODO: CHANGE THIS TO MATCH VEHICLE STRUCT
 
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> 4beac7853f7578892b069eb20616885101c89a60
 void VehicleModifyMenu() {    
-    printf(MSG_MODIFY_MENU, NEWLINE);
-    printf(MSG_MODIFY_NAME, NEWLINE);
-    printf(MSG_MODIFY_ADDRESS, NEWLINE);
-    printf(MSG_MODIFY_PHONE, NEWLINE);
-    printf(MSG_MODIFY_BIRTHDAY, NEWLINE);
-    printf(MSG_MODIFY_SIGNUPDATE, NEWLINE);
+   ////
+
     printf(MSG_OPTION);
 }
 */
