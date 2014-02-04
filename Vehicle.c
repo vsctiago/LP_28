@@ -79,8 +79,46 @@ void getNameVehicle(Vehicle *pVehicles, unsigned short int pos) {
 }
 
 void getType(Vehicle *pVehicles, unsigned short int pos) {
-
-
+    unsigned short type;
+    bool val = false;
+    
+    do {
+        printf(MSG_CARTYPES, NEWLINE, NEWLINE, NEWLINE, NEWLINE, NEWLINE);
+        printf(MSG_CARTYPES2, NEWLINE, NEWLINE, NEWLINE, NEWLINE, NEWLINE);
+        printf(MSG_TYPE);
+        scanf("%hu", &type);
+        if(type == 1) {
+            pVehicles[pos].type = CONVERTIBLE;
+            val = true;
+        } else if(type == 2) {
+            pVehicles[pos].type = COUPE;
+            val = true;
+        } else if(type == 3) {
+            pVehicles[pos].type = HYBRID;
+            val = true;
+        } else if(type == 4) {
+            pVehicles[pos].type = LUXURY;
+            val = true;
+        } else if(type == 5) {
+            pVehicles[pos].type = SEDAN;
+            val = true;
+        } else if(type == 6) {
+            pVehicles[pos].type = SUV;
+            val = true;
+        } else if(type == 7) {
+            pVehicles[pos].type = TRUCK;
+            val = true;
+        } else if(type == 8) {
+            pVehicles[pos].type = VAN;
+            val = true;
+        } else if(type == 9) {
+            pVehicles[pos].type = WAGON;
+            val = true;
+        } else {
+            printf(MSG_TYPE_ERROR, NEWLINE);
+            val = false;
+        }
+    } while(val == false);
 }
 
 void getDisplacement(Vehicle *pVehicles, unsigned short int pos) {
@@ -119,8 +157,30 @@ void getHp(Vehicle *pVehicles, unsigned short int pos) {
 }
 
 void getFuel(Vehicle *pVehicles, unsigned short int pos) {
-
-
+    unsigned short fuelType;
+    bool val = false;
+    
+    do {
+        printf(MSG_FUEL_TYPES, NEWLINE, NEWLINE, NEWLINE, NEWLINE, NEWLINE);
+        printf(MSG_FUEL);
+        scanf("%hu", &fuelType);
+        if(fuelType == 1) {
+            pVehicles[pos].vehicleChars.fuel = DIESEL;
+            val = true;
+        } else if(fuelType == 2) {
+            pVehicles[pos].vehicleChars.fuel = ELECTRIC;
+            val = true;
+        } else if(fuelType == 3) {
+            pVehicles[pos].vehicleChars.fuel = GAS;
+            val = true;
+        } else if(fuelType == 4) {
+            pVehicles[pos].vehicleChars.fuel = GASOLINE;
+            val = true;
+        } else {
+            printf(MSG_FUEL_ERROR);
+            val = false;
+        }
+    } while(val == false);
 }
 
 void getSeats(Vehicle *pVehicles, unsigned short int pos) {

@@ -24,9 +24,12 @@ int main(int argc, char** argv) {
     readClientFile(clients);
     readVehicleFile(vehicles);
     
-    getRegistration(vehicles, 0);
+    int a = 1;
     
-    printf("%s", vehicles[0].registration);
+    getFuel(vehicles, 0);
+    if(vehicles[0].vehicleChars.fuel == ELECTRIC){
+        printf("%d", a);
+    }
 /*
     do {
         Menu();

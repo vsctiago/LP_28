@@ -29,11 +29,11 @@ static const int SEATS_MINIMUM = 1;
 static const int SEATS_MAXIMUM = 9;
 
 typedef enum type {
-    CONVERTIBLE, COUPE, SEDAN, LUXURY, SUV, VAN, TRUCK, HYBRID, WAGON
+    CONVERTIBLE = 1, COUPE, HYBRID, LUXURY, SEDAN, SUV, TRUCK, VAN, WAGON
 } Type;
 
 typedef enum fuel {
-    DIESEL, GASOLINE, GAS, ELECTRIC
+    DIESEL, ELECTRIC, GAS, GASOLINE
 } Fuel;
 
 typedef enum currentState {
