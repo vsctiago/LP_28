@@ -55,8 +55,6 @@ void VehicleMenu() {
     printf(MSG_OPTION);
 }
 // TODO: CHANGE THIS TO MATCH VEHICLE STRUCT
-
-<<<<<<< HEAD
 /*
 =======
 >>>>>>> 4beac7853f7578892b069eb20616885101c89a60
