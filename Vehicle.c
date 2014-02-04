@@ -32,7 +32,7 @@ void listVehicle (Vehicle vehicles[]) {
     for(i=0; i<VEHICLE_SIZE; i++){
         
         if(vehicles[i].vehicleChars.engine == VEHICLE_INIT_ID) {
-            puts("MSG_VEHICLS_NOT_FUND", NEWLINE);
+            puts("MSG_VEHICLE_NOT_FUND", NEWLINE);
         }else{
          printf("");
          printf("");
